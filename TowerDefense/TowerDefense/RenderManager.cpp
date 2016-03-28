@@ -18,11 +18,11 @@ void RenderManager::render(vector<Object*> *objectsArray,GLuint width, GLuint he
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 
 	for (vector<Object *>::iterator iterator = objectsArray->begin(); iterator != objectsArray->end(); iterator++)
-	{
+	{		
 		glEnable(GL_DEPTH_TEST);
 		Object *object = *iterator;
 		model = transformModel(model, object);		
-		object->configShader(model, view, projection, lightPosition);
+		object->configShader(model, view, projection);
 		object->draw();		
 		model = glm::mat4();
 	}		

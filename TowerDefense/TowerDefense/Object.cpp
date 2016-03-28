@@ -1,6 +1,7 @@
 #include "Object.h"
 #include "Camera.h"
 #include "CameraManager.h"
+#include "LightManager.h"
 #include <glm/gtx/string_cast.hpp>
 #include "glm/gtc/type_ptr.hpp"
 
@@ -13,7 +14,7 @@ void Object::draw(){
 	}	
 }
 
-void Object::configShader(glm::mat4& model, glm::mat4& view, glm::mat4& projection, glm::vec3 lightPosition){
+void Object::configShader(glm::mat4& model, glm::mat4& view, glm::mat4& projection){
 	gameModel = model;
 	gameView = view;
 	gameProjection = projection;
@@ -21,15 +22,40 @@ void Object::configShader(glm::mat4& model, glm::mat4& view, glm::mat4& projecti
 
 	CameraManager *cameraManager = &CameraManager::getCameraManager();
 	Camera *currentCamera = cameraManager->getCurrentCamera();
+	LightManager *lightManager = &LightManager::getLightManager();	
 
-	//glUniform3f(shader->getUniformLocation("viewPos"), currentCamera->Position.x, currentCamera->Position.y, currentCamera->Position.z);
-	glUniform4f(shader->getUniformLocation("lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z, 1);
-
+	glUniform3f(shader->getUniformLocation("viewPos"), currentCamera->Position.x, currentCamera->Position.y, currentCamera->Position.z);
+	
 	glUniformMatrix4fv(shader->getUniformLocation("model"), 1, false, glm::value_ptr(gameModel));
 	glUniformMatrix4fv(shader->getUniformLocation("view"), 1, false, glm::value_ptr(gameView));
-	glUniformMatrix4fv(shader->getUniformLocation("projection"), 1, false, glm::value_ptr(gameProjection));
+	glUniformMatrix4fv(shader->getUniformLocation("projection"), 1, false, glm::value_ptr(gameProjection));		
+	
+	for (unsigned int i = 0; i < lightManager->getPointLights()->size(); i++){		
+		PointLight light = *(*lightManager->getPointLights())[i];				
+		glUniform3f(glGetUniformLocation(shader->Program, getUniformName(i, "position").c_str()), light.getPosition().x, light.getPosition().y, light.getPosition().z);
+		glUniform3f(glGetUniformLocation(shader->Program, getUniformName(i, "ambient").c_str()), light.getAmbient().x, light.getAmbient().y, light.getAmbient().z);
+		glUniform3f(glGetUniformLocation(shader->Program, getUniformName(i, "diffuse").c_str()), light.getDiffuse().x, light.getDiffuse().y, light.getDiffuse().z);
+		glUniform3f(glGetUniformLocation(shader->Program, getUniformName(i, "specular").c_str()), light.getSpecular().x, light.getSpecular().y, light.getSpecular().z);
+		glUniform1f(glGetUniformLocation(shader->Program, getUniformName(i, "constant").c_str()), light.getConstant());
+		glUniform1f(glGetUniformLocation(shader->Program, getUniformName(i, "linear").c_str()), light.getLinear());
+		glUniform1f(glGetUniformLocation(shader->Program, getUniformName(i, "quadratic").c_str()), light.getQuadratic());
+	}	
 
+	DirLight dirLight = lightManager->getDirLight();
+	glUniform3f(glGetUniformLocation(shader->Program, "dirLight.direction"), dirLight.direction.x, dirLight.direction.y, dirLight.direction.z);
+	glUniform3f(glGetUniformLocation(shader->Program, "dirLight.ambient"), dirLight.ambient.x, dirLight.ambient.y, dirLight.ambient.z);
+	glUniform3f(glGetUniformLocation(shader->Program, "dirLight.diffuse"), dirLight.diffuse.x, dirLight.diffuse.y, dirLight.diffuse.z);
+	glUniform3f(glGetUniformLocation(shader->Program, "dirLight.specular"), dirLight.specular.x, dirLight.specular.y, dirLight.specular.z);
 }
+
+string Object::getUniformName(int id, string part){
+	string name = "pointLights[";
+	name.append(to_string(id));
+	name.append("].");
+	name.append(part);	
+	return name;
+}
+
 
 Model *Object::getModel(){
 	return model;

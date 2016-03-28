@@ -4,6 +4,7 @@
 #include "CameraManager.h"
 #include "InputManager.h"
 #include "RenderManager.h"
+#include "LightManager.h"
 #include "Scene.h"
 #include <GLFW/glfw3.h>
 
@@ -20,6 +21,7 @@ private:
 	CameraManager *cameraManager;
 	InputManager *inputManager;
 	RenderManager *renderManager;
+	LightManager *lightManager;
 	Scene *scene;
 
 	GameManager();

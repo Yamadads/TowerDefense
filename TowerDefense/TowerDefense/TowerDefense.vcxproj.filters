@@ -13,14 +13,20 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\SimpleModels">
-      <UniqueIdentifier>{4460952a-c233-49ed-8b5c-7bcbeb05df2f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Objects">
       <UniqueIdentifier>{230f9400-8b8d-405a-a3cf-da3792a0565d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Objects">
       <UniqueIdentifier>{39e727c8-0fb4-4f24-ab69-a24614023e1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects\SimpleModels">
+      <UniqueIdentifier>{4460952a-c233-49ed-8b5c-7bcbeb05df2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Camera">
+      <UniqueIdentifier>{d36bf3c3-7432-4c65-9eaa-f6cee8799fd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Light">
+      <UniqueIdentifier>{61a75a5f-ed46-4eb7-9950-dc857376e5c3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,18 +66,18 @@
     <ClCompile Include="SimpleModel.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="LightManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
@@ -87,7 +93,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="box.h">
-      <Filter>Header Files\SimpleModels</Filter>
+      <Filter>Header Files\Objects\SimpleModels</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Header Files\Objects</Filter>
@@ -102,10 +108,22 @@
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="floorMap.h">
-      <Filter>Header Files\SimpleModels</Filter>
+      <Filter>Header Files\Objects\SimpleModels</Filter>
     </ClInclude>
     <ClInclude Include="wallMap.h">
-      <Filter>Header Files\SimpleModels</Filter>
+      <Filter>Header Files\Objects\SimpleModels</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Header Files\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="LightManager.h">
+      <Filter>Header Files\Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +137,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Shaders\simpleModel.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\LightShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\LightShader.vs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

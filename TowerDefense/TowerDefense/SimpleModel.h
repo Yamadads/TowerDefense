@@ -1,17 +1,15 @@
 #include <iostream>
-#include <vector>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <SOIL.h>
 #include "Shader.h"
-#include "IModel.h"
 #include <string>
 
 using namespace std;
 /*
 each model should have his own shader with specific number of textures
 */
-class SimpleModel :public IModel
+class SimpleModel
 {
 private:
 	GLuint VBO, VAO, EBO;

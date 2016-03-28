@@ -10,7 +10,7 @@ class Scene
 {
 private:
 	vector<Object *> *children;
-	void initMap(Object *object, SimpleModel *simpleModel, const GLchar* vertexPath, const GLchar* fragmentPath);
+	void initMap(Object *object, SimpleModel *simpleModel, const GLchar* floorVSPath, const GLchar* floorFSPath,const GLchar* wallVSPath, const GLchar* wallFSPath);
 public:
 	vector<Object *> *getChildren();
 
