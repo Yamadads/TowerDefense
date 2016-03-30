@@ -70,6 +70,7 @@ SphereObject::SphereObject(Sphere *sphere, glm::vec3 position, const GLchar* ver
 	setUpVector(glm::vec3(0.0f, 0.0f, 0.0f));
 	setColor(color);
 	setupVAO();
+	lightManager = &LightManager::getLightManager();
 }
 
 SphereObject::~SphereObject(){

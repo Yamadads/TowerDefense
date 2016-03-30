@@ -29,15 +29,19 @@ void SimpleObject::configShader(glm::mat4& model, glm::mat4& view, glm::mat4& pr
 
 	glUniform1i(glGetUniformLocation(getShader()->Program, "pointsNumber"), (GLint)lightManager->getPointLights()->size());
 
-	for (unsigned int i = 0; i < lightManager->getPointLights()->size(); i++){
-		PointLight light = *(*lightManager->getPointLights())[i];
-		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(i, "position").c_str()), light.getPosition().x, light.getPosition().y, light.getPosition().z);
-		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(i, "ambient").c_str()), light.getAmbient().x, light.getAmbient().y, light.getAmbient().z);
-		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(i, "diffuse").c_str()), light.getDiffuse().x, light.getDiffuse().y, light.getDiffuse().z);
-		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(i, "specular").c_str()), light.getSpecular().x, light.getSpecular().y, light.getSpecular().z);
-		glUniform1f(glGetUniformLocation(getShader()->Program, getUniformName(i, "constant").c_str()), light.getConstant());
-		glUniform1f(glGetUniformLocation(getShader()->Program, getUniformName(i, "linear").c_str()), light.getLinear());
-		glUniform1f(glGetUniformLocation(getShader()->Program, getUniformName(i, "quadratic").c_str()), light.getQuadratic());
+	int pointNum = 0;
+	for (std::map<unsigned long long, PointLight*>::iterator iterator = lightManager->getPointLights()->begin(); iterator != lightManager->getPointLights()->end(); iterator++)
+	{
+		PointLight light = (*(*iterator).second);
+		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "position").c_str()), light.getPosition().x, light.getPosition().y, light.getPosition().z);
+		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "ambient").c_str()), light.getAmbient().x, light.getAmbient().y, light.getAmbient().z);
+		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "diffuse").c_str()), light.getDiffuse().x, light.getDiffuse().y, light.getDiffuse().z);
+		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "specular").c_str()), light.getSpecular().x, light.getSpecular().y, light.getSpecular().z);
+		glUniform1f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "constant").c_str()), light.getConstant());
+		glUniform1f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "linear").c_str()), light.getLinear());
+		glUniform1f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "quadratic").c_str()), light.getQuadratic());
+
+		pointNum++;
 	}
 
 	DirLight dirLight = lightManager->getDirLight();

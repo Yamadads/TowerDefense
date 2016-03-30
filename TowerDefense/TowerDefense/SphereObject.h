@@ -3,12 +3,14 @@
 #include "Shader.h"
 #include "SceneObject.h"
 #include "Sphere.h"
+#include "LightManager.h"
 
 class SphereObject : public SceneObject
 {
 private:
-	Sphere *sphere = nullptr;
-	PointLight *light = nullptr;
+	Sphere *sphere = nullptr;	
+	LightManager *lightManager;
+	unsigned long long lightId;
 	GLuint VBO, VAO, EBO;
 	glm::vec4 uColor;
 

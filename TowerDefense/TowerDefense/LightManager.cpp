@@ -16,9 +16,10 @@ void LightManager::destroyLightManager(){
 }
 
 LightManager::LightManager(){
-	pointLights = new std::vector<PointLight*>();
+	pointLights = new std::map<unsigned long long, PointLight*>();
 	
-	pointLights->push_back(new PointLight(glm::vec3(3.0f, 2.0f, 2.0f)));
+	(*pointLights)[getNewID()] = new PointLight(glm::vec3(3.0f, 2.0f, 2.0f));
+	//pointLights->push_back(new PointLight(glm::vec3(3.0f, 2.0f, 2.0f)));
 	/*pointLights->push_back(new PointLight(glm::vec3(1.0f, 1.0f, -1.0f)));
 	pointLights->push_back(new PointLight(glm::vec3(-1.0f, 1.0f, 1.0f)));
 	pointLights->push_back(new PointLight(glm::vec3(-1.0f, 1.0f, -1.0f)));
@@ -31,8 +32,9 @@ LightManager::LightManager(){
 }
 
 LightManager::~LightManager(){
-	for (int i = 0; i < pointLights->size(); i++){
-		delete (*pointLights)[i];
+	for (std::map<unsigned long long, PointLight*>::iterator iterator = pointLights->begin(); iterator != pointLights->end(); iterator++)
+	{
+		delete (*iterator).second;
 	}
 	delete pointLights;
 }
@@ -41,7 +43,7 @@ int LightManager::getPointLightsNumber(){
 	return pointLights->size();
 }
 
-std::vector<PointLight*> *LightManager::getPointLights(){
+std::map<unsigned long long, PointLight*> *LightManager::getPointLights(){
 	return pointLights;
 }
 
@@ -54,4 +56,8 @@ void LightManager::setDirLight(glm::vec3 direction, glm::vec3 ambient, glm::vec3
 	dirLight.diffuse = diffuse;
 	dirLight.direction = direction;
 	dirLight.specular = specular;
+}
+
+unsigned long long LightManager::getNewID(){	
+	return id++;	
 }
