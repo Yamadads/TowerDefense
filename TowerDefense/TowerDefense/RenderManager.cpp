@@ -5,7 +5,7 @@
 #include <glm/gtx/string_cast.hpp>
 
 
-void RenderManager::render(vector<SceneObject*> *objectsArray,GLuint width, GLuint height)
+void RenderManager::render(map<string, SceneObject*> *objectsArray,GLuint width, GLuint height)
 {
 	glm::mat4 view;
 	glm::mat4 model;
@@ -17,10 +17,10 @@ void RenderManager::render(vector<SceneObject*> *objectsArray,GLuint width, GLui
 	glClearColor(0.149f, 0.388f, 0.925f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 
-	for (vector<SceneObject *>::iterator iterator = objectsArray->begin(); iterator != objectsArray->end(); iterator++)
+	for (map<string, SceneObject *>::iterator iterator = objectsArray->begin(); iterator != objectsArray->end(); iterator++)
 	{		
 		glEnable(GL_DEPTH_TEST);
-		SceneObject *sceneObject = *iterator;
+		SceneObject *sceneObject = (*iterator).second;
 		model = transformModel(model, sceneObject);
 		sceneObject->configShader(model, view, projection);
 		sceneObject->draw();		

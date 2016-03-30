@@ -26,7 +26,7 @@ private:
 	~RenderManager();
 
 public:
-	void render(vector<SceneObject *> *objectsArray, GLuint width, GLuint height);
+	void render(map<string, SceneObject *> *objectsArray, GLuint width, GLuint height);
 	static RenderManager& getRenderManager();
 	static void destroyRenderManager();
 

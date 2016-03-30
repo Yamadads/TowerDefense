@@ -16,7 +16,7 @@ using namespace glm;
 
 Scene::Scene()
 {
-	children = new vector<SceneObject *>();
+	children = new map<string, SceneObject *>();
 
 	map<string, GLchar*> paths;
 	paths["VSmodel"] = "Shaders/model.vs";
@@ -36,7 +36,7 @@ Scene::Scene()
 	object = new ModelObject(new Model("Models/Megatron/RB-Megatron.obj"), glm::vec3(0.0f, 0.0f, 0.0f), paths["VSlight"], paths["FSlight"]);
 	object->setRotation(glm::vec3(270.0f, 0.0f, 0.0f));
 	object->setScale(glm::vec3(0.005f, 0.005f, 0.005f));
-	children->push_back(object);
+	(*children)["megatron"] = object;	
 	/*
 	model = new Model("Models/Megatron/RB-Megatron.obj");
 	object = new Object(model, glm::vec3(0.0f, 0.0f, 0.0f), paths["VSlight"], paths["FSlight"]);
@@ -80,44 +80,44 @@ void Scene::initMap(SceneObject *object, const GLchar* floorVSPath, const GLchar
 	object = new SimpleObject(simpleModel, glm::vec3(0.0f, 0.0f, 0.0f), floorVSPath, floorFSPath);
 	object->setRotation(glm::vec3(0.0f, 0.0f, 0.0f));
 	object->setScale(glm::vec3(2.0f, 2.0f, 2.0f));
-	children->push_back(object);
+	(*children)["floor"]=object;
 
 	simpleModel = new SimpleModel(wallMapVertices, sizeof(wallMapVertices), wallMapIndices, sizeof(wallMapIndices), wallMapTexture);
 	object = new SimpleObject(simpleModel, glm::vec3(0.0f, 4.0f, -40.0f), wallVSPath, wallFSPath);
 	object->setRotation(glm::vec3(90.0f, 0.0f, 0.0f));
 	object->setScale(glm::vec3(2.0f, 2.0f, 2.0f));
-	children->push_back(object);
+	(*children)["wall1"] = object;
 
 	simpleModel = new SimpleModel(wallMapVertices, sizeof(wallMapVertices), wallMapIndices, sizeof(wallMapIndices), wallMapTexture);
 	object = new SimpleObject(simpleModel, glm::vec3(0.0f, 4.0f, 40.0f), wallVSPath, wallFSPath);
 	object->setRotation(glm::vec3(90.0f, 0.0f, 0.0f));
 	object->setScale(glm::vec3(2.0f, 2.0f, 2.0f));
-	children->push_back(object);
+	(*children)["wall2"] = object;
 
 	simpleModel = new SimpleModel(wallMapVertices, sizeof(wallMapVertices), wallMapIndices, sizeof(wallMapIndices), wallMapTexture);
 	object = new SimpleObject(simpleModel, glm::vec3(-40.0f, 4.0f, 0.0f), wallVSPath, wallFSPath);
 	object->setRotation(glm::vec3(90.0f, 0.0f, 90.0f));
 	object->setScale(glm::vec3(2.0f, 2.0f, 2.0f));
-	children->push_back(object);
+	(*children)["wall3"] = object;
 
 	simpleModel = new SimpleModel(wallMapVertices, sizeof(wallMapVertices), wallMapIndices, sizeof(wallMapIndices), wallMapTexture);
 	object = new SimpleObject(simpleModel, glm::vec3(40.0f, 4.0f, 0.0f), wallVSPath, wallFSPath);
 	object->setRotation(glm::vec3(90.0f, 0.0f, 90.0f));
 	object->setScale(glm::vec3(2.0f, 2.0f, 2.0f));
-	children->push_back(object);
+	(*children)["wall4"] = object;
 }
 
 Scene::~Scene()
 {
-	for (vector<SceneObject *>::iterator iterator = children->begin(); iterator != children->end(); iterator++)
+	for (map<string, SceneObject *>::iterator iterator = children->begin(); iterator != children->end(); iterator++)
 	{
-		delete *iterator;
+		delete (*iterator).second;
 	}
 	delete children;
 }
 
 
-vector<SceneObject *>* Scene::getChildren()
+map<string, SceneObject *>* Scene::getChildren()
 {
 	return children;
 }
