@@ -60,9 +60,6 @@
     <ClCompile Include="Model.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="SimpleModel.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
@@ -71,6 +68,18 @@
     </ClCompile>
     <ClCompile Include="PointLight.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneObject.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelObject.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleObject.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,16 +101,10 @@
     <ClInclude Include="RenderManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="box.h">
-      <Filter>Header Files\Objects\SimpleModels</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Model.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="SimpleModel.h">
@@ -125,6 +128,18 @@
     <ClInclude Include="LightManager.h">
       <Filter>Header Files\Light</Filter>
     </ClInclude>
+    <ClInclude Include="SceneObject.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelObject.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleObject.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\model.frag">
@@ -143,6 +158,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Shaders\LightShader.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\Sphere.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\Sphere.vs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

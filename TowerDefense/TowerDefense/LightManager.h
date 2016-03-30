@@ -16,8 +16,8 @@ struct DirLight {
 class LightManager
 {
 private:
-
-	std::vector<PointLight*> *pointLights;
+	//max 20 point lights
+	std::vector<PointLight*> *pointLights; 
 	DirLight dirLight;
 	LightManager();
 	~LightManager();

@@ -76,16 +76,18 @@
     <ClCompile Include="LightManager.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
-    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ModelObject.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SimpleModel.cpp" />
+    <ClCompile Include="SimpleObject.cpp" />
+    <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="TowerDefense.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="box.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="floorMap.h" />
@@ -94,13 +96,16 @@
     <ClInclude Include="LightManager.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
-    <ClInclude Include="Object.h" />
+    <ClInclude Include="ModelObject.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SimpleModel.h" />
+    <ClInclude Include="SimpleObject.h" />
+    <ClInclude Include="Sphere.h" />
     <ClInclude Include="wallMap.h" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +115,8 @@
     <None Include="Shaders\model.vs" />
     <None Include="Shaders\simpleModel.frag" />
     <None Include="Shaders\simpleModel.vs" />
+    <None Include="Shaders\Sphere.frag" />
+    <None Include="Shaders\Sphere.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,11 +1,11 @@
 #include "RenderManager.h"
-#include "Object.h"
+#include "SceneObject.h"
 #include "GameManager.h"
 #include <glm/gtx/vector_angle.hpp>
 #include <glm/gtx/string_cast.hpp>
 
 
-void RenderManager::render(vector<Object*> *objectsArray,GLuint width, GLuint height)
+void RenderManager::render(vector<SceneObject*> *objectsArray,GLuint width, GLuint height)
 {
 	glm::mat4 view;
 	glm::mat4 model;
@@ -17,19 +17,19 @@ void RenderManager::render(vector<Object*> *objectsArray,GLuint width, GLuint he
 	glClearColor(0.149f, 0.388f, 0.925f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 
-	for (vector<Object *>::iterator iterator = objectsArray->begin(); iterator != objectsArray->end(); iterator++)
+	for (vector<SceneObject *>::iterator iterator = objectsArray->begin(); iterator != objectsArray->end(); iterator++)
 	{		
 		glEnable(GL_DEPTH_TEST);
-		Object *object = *iterator;
-		model = transformModel(model, object);		
-		object->configShader(model, view, projection);
-		object->draw();		
+		SceneObject *sceneObject = *iterator;
+		model = transformModel(model, sceneObject);
+		sceneObject->configShader(model, view, projection);
+		sceneObject->draw();		
 		model = glm::mat4();
 	}		
 	glfwSwapBuffers(window);
 }
 
-glm::mat4 RenderManager::transformModel(glm::mat4 modelMatrix, Object *object){
+glm::mat4 RenderManager::transformModel(glm::mat4 modelMatrix, SceneObject *object){
 	modelMatrix = glm::translate(modelMatrix, object->getPosition());
 	modelMatrix = rotateModel(modelMatrix, object->getRotation());
 	modelMatrix = glm::scale(modelMatrix, object->getScale());
@@ -43,32 +43,14 @@ glm::mat4 RenderManager::rotateModel(glm::mat4 modelMatrix, glm::vec3 rotationMa
 	return modelMatrix;
 }
 
-void RenderManager::moveToShader(Object* object, glm::mat4& model, glm::mat4& view, glm::mat4& projection)
-{
-}
-
-
-
-
-
-void RenderManager::checkForNewObjects(vector<Object *> *objectArray)
-{
-
-}
-
-
 RenderManager::RenderManager() :window(glfwGetCurrentContext()), cameraManager(&CameraManager::getCameraManager()), firstRender(true)
 {
 }
-
 
 RenderManager::~RenderManager()
 {
 
 }
-
-
-
 
 RenderManager& RenderManager::getRenderManager()
 {
@@ -88,9 +70,4 @@ void RenderManager::destroyRenderManager()
 {
 	RenderManager *renderManager = &getRenderManager();
 	delete renderManager;
-}
-
-vector<Object *>* RenderManager::getNewObjects()
-{
-	return newObjects;
 }

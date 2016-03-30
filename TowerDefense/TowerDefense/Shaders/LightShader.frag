@@ -25,7 +25,7 @@ struct PointLight {
     vec3 specular;
 };
 
-#define NR_POINT_LIGHTS 4
+#define NR_POINT_LIGHTS 20
 
 in vec3 FragPos;
 in vec3 Normal;
@@ -33,6 +33,7 @@ in vec2 TexCoords;
 
 out vec4 color;
 
+uniform int pointsNumber;
 uniform vec3 viewPos;
 uniform DirLight dirLight;
 uniform PointLight pointLights[NR_POINT_LIGHTS];
@@ -61,7 +62,7 @@ void main()
 
        // Phase 2: Point lights
 
-    for(int i = 0; i < NR_POINT_LIGHTS ; i++)
+    for(int i = 0; i < pointsNumber ; i++)
 	{
 		vec3 lightDir = normalize(pointLights[i].position - FragPos);
 		// Diffuse shading
