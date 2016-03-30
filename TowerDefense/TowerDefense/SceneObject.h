@@ -24,10 +24,11 @@ private:
 	glm::vec3 eyeVector;
 	glm::vec3 upVector;
 
-public:
-	virtual void draw() = 0;
 	virtual void configShader(glm::mat4& model, glm::mat4& view, glm::mat4& projection) = 0;
 
+public:
+	virtual void draw(glm::mat4& model, glm::mat4& view, glm::mat4& projection) = 0;
+	
 	Shader *getShader();
 	void setShader(Shader *newShader);
 

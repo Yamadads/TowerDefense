@@ -5,8 +5,9 @@
 #include <glm/gtx/string_cast.hpp>
 #include "glm/gtc/type_ptr.hpp"
 
-void SimpleObject::draw(){
-	model->draw(getShader());
+void SimpleObject::draw(glm::mat4& model, glm::mat4& view, glm::mat4& projection){
+	configShader(model, view, projection);
+	this->model->draw(getShader());
 }
 
 void SimpleObject::configShader(glm::mat4& model, glm::mat4& view, glm::mat4& projection){
@@ -76,4 +77,6 @@ SimpleObject::SimpleObject(SimpleModel *model, glm::vec3 position, const GLchar*
 }
 
 SimpleObject::~SimpleObject(){
+	delete model;
+	delete getShader();
 }

@@ -21,9 +21,8 @@ void RenderManager::render(map<string, SceneObject*> *objectsArray,GLuint width,
 	{		
 		glEnable(GL_DEPTH_TEST);
 		SceneObject *sceneObject = (*iterator).second;
-		model = transformModel(model, sceneObject);
-		sceneObject->configShader(model, view, projection);
-		sceneObject->draw();		
+		model = transformModel(model, sceneObject);		
+		sceneObject->draw(model, view, projection);
 		model = glm::mat4();
 	}		
 	glfwSwapBuffers(window);

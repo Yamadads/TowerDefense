@@ -5,8 +5,9 @@
 #include <glm/gtx/string_cast.hpp>
 #include "glm/gtc/type_ptr.hpp"
 
-void ModelObject::draw(){
-		model->draw(getShader());
+void ModelObject::draw(glm::mat4& model, glm::mat4& view, glm::mat4& projection){
+	configShader(model, view, projection);
+	this->model->draw(getShader());
 }
 
 void ModelObject::configShader(glm::mat4& model, glm::mat4& view, glm::mat4& projection){
@@ -76,4 +77,6 @@ ModelObject::ModelObject(Model *model, glm::vec3 position, const GLchar* vertexP
 }
 
 ModelObject::~ModelObject(){
+	delete model;
+	delete getShader();
 }

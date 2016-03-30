@@ -6,7 +6,7 @@
 
 #include "ModelObject.h"
 #include "SimpleObject.h"
-#include "Sphere.h"
+#include "SphereObject.h"
 
 #include "floorMap.h"
 #include "wallMap.h"
@@ -27,6 +27,8 @@ Scene::Scene()
 	paths["FScolor"] = "Shaders/ColorShader.frag";
 	paths["VSlight"] = "Shaders/LightShader.vs";
 	paths["FSlight"] = "Shaders/LightShader.frag";
+	paths["VSsphere"] = "Shaders/Sphere.vs";
+	paths["FSsphere"] = "Shaders/Sphere.frag";
 
 	SceneObject *object = NULL;	
 	SimpleModel *simpleModel = NULL;
@@ -37,6 +39,10 @@ Scene::Scene()
 	object->setRotation(glm::vec3(270.0f, 0.0f, 0.0f));
 	object->setScale(glm::vec3(0.005f, 0.005f, 0.005f));
 	(*children)["megatron"] = object;	
+
+	object = new SphereObject(new Sphere(0.5,18,18), glm::vec3(3.0f, 2.0f, 2.0f), paths["VSsphere"], paths["FSsphere"], glm::vec4(1.0f, 1.0f, 0.0f, 0.9f));
+	(*children)["bullet"] = object;
+
 	/*
 	model = new Model("Models/Megatron/RB-Megatron.obj");
 	object = new Object(model, glm::vec3(0.0f, 0.0f, 0.0f), paths["VSlight"], paths["FSlight"]);

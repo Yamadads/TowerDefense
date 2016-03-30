@@ -18,11 +18,11 @@ void LightManager::destroyLightManager(){
 LightManager::LightManager(){
 	pointLights = new std::vector<PointLight*>();
 	
-	pointLights->push_back(new PointLight(glm::vec3(1.0f, 1.0f, 1.0f)));
-	pointLights->push_back(new PointLight(glm::vec3(1.0f, 1.0f, -1.0f)));
+	pointLights->push_back(new PointLight(glm::vec3(3.0f, 2.0f, 2.0f)));
+	/*pointLights->push_back(new PointLight(glm::vec3(1.0f, 1.0f, -1.0f)));
 	pointLights->push_back(new PointLight(glm::vec3(-1.0f, 1.0f, 1.0f)));
 	pointLights->push_back(new PointLight(glm::vec3(-1.0f, 1.0f, -1.0f)));
-	
+	*/
 	dirLight.direction = glm::vec3(-0.2f, -1.0f, 0.0f);
 	dirLight.ambient = glm::vec3(0.1f, 0.1f, 0.1f);
 	dirLight.diffuse = glm::vec3(0.4f, 0.4f, 0.4f);
