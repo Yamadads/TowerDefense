@@ -18,7 +18,7 @@ void LightManager::destroyLightManager(){
 LightManager::LightManager(){
 	pointLights = new std::map<unsigned long long, PointLight*>();
 	
-	(*pointLights)[getNewID()] = new PointLight(glm::vec3(3.0f, 2.0f, 2.0f));
+	//(*pointLights)[getNewID()] = new PointLight(glm::vec3(3.0f, 2.0f, 2.0f));	
 	//pointLights->push_back(new PointLight(glm::vec3(3.0f, 2.0f, 2.0f)));
 	/*pointLights->push_back(new PointLight(glm::vec3(1.0f, 1.0f, -1.0f)));
 	pointLights->push_back(new PointLight(glm::vec3(-1.0f, 1.0f, 1.0f)));
@@ -60,4 +60,10 @@ void LightManager::setDirLight(glm::vec3 direction, glm::vec3 ambient, glm::vec3
 
 unsigned long long LightManager::getNewID(){	
 	return id++;	
+}
+
+unsigned long long LightManager::addPointLight(glm::vec3 position){
+	unsigned long long newLigntID = getNewID();
+	(*pointLights)[newLigntID] = new PointLight(position);
+	return newLigntID;
 }

@@ -4,7 +4,7 @@
 
 class SceneObject
 {
-private:
+protected:
 	Shader *shader = nullptr;
 
 	glm::mat4 gameModel;
@@ -45,7 +45,7 @@ public:
 	void setMovementDirection(glm::vec3 newDirection);
 
 	glm::vec3 getPosition();
-	void setPosition(glm::vec3 newPosition);
+	virtual void setPosition(glm::vec3 newPosition);
 
 	glm::vec3 getScale();
 	void setScale(glm::vec3 newScale);

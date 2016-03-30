@@ -29,8 +29,11 @@ private:
 public:
 	DirLight getDirLight();
 	void setDirLight(glm::vec3 direction, glm::vec3 ambient, glm::vec3 diffuse,	glm::vec3 specular);
+	
 	int getPointLightsNumber();
 	std::map<unsigned long long, PointLight*> *getPointLights();
+	unsigned long long addPointLight(glm::vec3 position);
+
 	static LightManager& getLightManager();
 	static void destroyLightManager();
 };

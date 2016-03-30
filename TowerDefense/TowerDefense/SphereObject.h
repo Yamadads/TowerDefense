@@ -27,5 +27,7 @@ public:
 
 	Sphere *getSphere();
 	void setSphere(Sphere *newSphere);
+
+	void setPosition(glm::vec3 newPosition);
 };
 

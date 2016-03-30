@@ -60,7 +60,7 @@ void SphereObject::setSphere(Sphere *newSphere){
 SphereObject::SphereObject(Sphere *sphere, glm::vec3 position, const GLchar* vertexPath, const GLchar* fragmentPath, glm::vec4 color){
 	setShader(new Shader(vertexPath, fragmentPath));
 	setSphere(sphere);
-	setPosition(position);
+	this->position = position;
 	setScale(glm::vec3(1.0f, 1.0f, 1.0f));
 	setRotation(glm::vec3(0.0f, 0.0f, 0.0f));
 	setVelocity(glm::vec3(0.0f, 0.0f, 0.0f));
@@ -71,11 +71,14 @@ SphereObject::SphereObject(Sphere *sphere, glm::vec3 position, const GLchar* ver
 	setColor(color);
 	setupVAO();
 	lightManager = &LightManager::getLightManager();
+	lightId = lightManager->addPointLight(position);
 }
 
 SphereObject::~SphereObject(){
 	delete sphere;	
 	delete getShader();
+	delete (*(lightManager->getPointLights()))[lightId];
+	(*(lightManager->getPointLights())).erase(lightId);
 }
 
 glm::vec4 SphereObject::getColor(){
@@ -84,4 +87,11 @@ glm::vec4 SphereObject::getColor(){
 
 void SphereObject::setColor(glm::vec4 color){
 	uColor = color;
+}
+
+void SphereObject::setPosition(glm::vec3 newPosition){
+	position = newPosition;
+	if ((lightManager != NULL)&&((*(lightManager->getPointLights()))[lightId] != NULL)){
+			(*(lightManager->getPointLights()))[lightId]->setPosition(newPosition);
+	}			
 }
