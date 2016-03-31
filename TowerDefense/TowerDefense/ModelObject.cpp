@@ -27,10 +27,10 @@ void ModelObject::configShader(glm::mat4& model, glm::mat4& view, glm::mat4& pro
 	glUniformMatrix4fv(getShader()->getUniformLocation("view"), 1, false, glm::value_ptr(getGameView()));
 	glUniformMatrix4fv(getShader()->getUniformLocation("projection"), 1, false, glm::value_ptr(getGameProjection()));
 	
-	glUniform1i(glGetUniformLocation(getShader()->Program, "pointsNumber"), (GLint)lightManager->getPointLights()->size());
+	glUniform1i(glGetUniformLocation(getShader()->Program, "pointsNumber"), (GLint)lightManager->getLightPoints()->size());
 	
 	int pointNum = 0;
-	for (std::map<unsigned long long, PointLight*>::iterator iterator = lightManager->getPointLights()->begin(); iterator != lightManager->getPointLights()->end(); iterator++)
+	for (std::map<unsigned long long, PointLight*>::iterator iterator = lightManager->getLightPoints()->begin(); iterator != lightManager->getLightPoints()->end(); iterator++)
 	{
 		PointLight light = (*(*iterator).second);
 		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "position").c_str()), light.getPosition().x, light.getPosition().y, light.getPosition().z);

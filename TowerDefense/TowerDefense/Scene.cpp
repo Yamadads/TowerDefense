@@ -16,9 +16,7 @@ using namespace glm;
 
 Scene::Scene()
 {
-	children = new map<string, SceneObject *>();
-
-	map<string, GLchar*> paths;
+	children = new map<string, SceneObject *>();	
 	paths["VSmodel"] = "Shaders/model.vs";
 	paths["FSmodel"] = "Shaders/model.frag";
 	paths["VSsimple"] = "Shaders/simpleModel.vs";
@@ -40,7 +38,7 @@ Scene::Scene()
 	object->setScale(glm::vec3(0.005f, 0.005f, 0.005f));
 	(*children)["megatron"] = object;	
 
-	object = new SphereObject(new Sphere(0.5,18,18), glm::vec3(3.0f, 2.0f, 2.0f), paths["VSsphere"], paths["FSsphere"], glm::vec4(1.0f, 1.0f, 0.0f, 0.9f));
+	object = new SphereObject(new Sphere(0.5,18,18), glm::vec3(3.0f, 2.0f, 2.0f), paths["VSsphere"], paths["FSsphere"], glm::vec4(1.0f, 1.0f, 0.3f, 0.9f));
 	(*children)["bullet"] = object;
 
 	/*
@@ -126,4 +124,8 @@ Scene::~Scene()
 map<string, SceneObject *>* Scene::getChildren()
 {
 	return children;
+}
+
+const GLchar* Scene::getShaderPath(string name){
+	return paths[name];
 }
