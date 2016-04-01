@@ -14,6 +14,7 @@ GameManager::GameManager():window(glfwGetCurrentContext())
 	inputManager = &InputManager::getInputManager();
 	renderManager = &RenderManager::getRenderManager();
 	scene = new Scene();
+	player = &Player::getPlayer();
 	enemyManager = &EnemyManager::getEnemyManager();
 	enemyManager->setScene(scene);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -80,6 +81,7 @@ GameManager::~GameManager()
 	InputManager::destroyInputManager();
 	RenderManager::destroyRenderManager();	
 	EnemyManager::destroyEnemyManager();
+	Player::destroyPlayer();
 	delete scene;
 }
 
@@ -112,5 +114,12 @@ void GameManager::runGameLoop()
 		renderManager->render(scene->getChildren(),screenWidth, screenHeight);
 		
 		running = !glfwWindowShouldClose(window);
+		checkPlayer();
+	}
+}
+
+void GameManager::checkPlayer(){
+	if (player->getHealth() == 0){
+		running = false;
 	}
 }

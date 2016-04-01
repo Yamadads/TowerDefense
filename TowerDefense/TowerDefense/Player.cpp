@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 
 Player::Player(){
 	health = 100;
@@ -46,4 +47,18 @@ void Player::setPoints(int newPoints){
 
 void Player::addPoints(int points){
 	this->points += points;
+}
+
+Player& Player::getPlayer(){
+	static Player *player = NULL;
+	if (player == NULL)
+	{
+		player = new Player();
+	}
+	return *player;
+}
+
+void Player::destroyPlayer(){
+	Player *player = &getPlayer();
+	delete player;
 }

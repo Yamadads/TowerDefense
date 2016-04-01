@@ -1,5 +1,6 @@
 #include "EnemyManager.h"
 #include "ModelObject.h"
+#include "Player.h"
 #include <cmath>
 #include <glm/gtx/vector_angle.hpp>
 
@@ -23,6 +24,7 @@ std::map<std::string, Enemy*>* EnemyManager::getEnemies(){
 }
 
 EnemyManager::EnemyManager(){
+	playerDamage = 20;
 	enemies = new std::map<std::string, Enemy*>();		
 }
 
@@ -48,8 +50,8 @@ void EnemyManager::addEnemy(){
 	glm::vec3 targetPosition = (*(scene->getChildren()))["megatron"]->getPosition();		
 	glm::vec2 u = glm::vec2(0,-1);
 	glm::vec2 v = glm::normalize(glm::vec2(targetPosition.x,targetPosition.z)-glm::vec2(x,z)); 
-	GLfloat angle2 = -1 * 180 / 3.14 * fmodf(atan2(u.x*v.y - v.x*u.y, u.x*v.x + u.y*v.y), 2 * 3.14);	
-	object->setRotation(glm::vec3(270, 0, angle2));
+	double angle2 = -1 * 180 / 3.14 * fmodf(atan2(u.x*v.y - v.x*u.y, u.x*v.x + u.y*v.y), 2 * 3.14);	
+	object->setRotation(glm::vec3(270, 0, (GLfloat)angle2));
 
 	string newEnemyID = getNewId();
 	Enemy *enemy = new Enemy(newEnemyID, object, targetPosition, scene->getChildren());
@@ -69,10 +71,11 @@ void EnemyManager::update(){
 	for (map<string, Enemy *>::iterator iterator = enemies->begin(); iterator != enemies->end(); iterator++)
 	{
 		//move enemy and react if hit megatron
-		if (iterator->second->move(0.005)){
+		if (iterator->second->move(0.005f)){
 			//add to kill list 
-			toKill->push_back(iterator->second->getID());			
-			//kill player
+			toKill->push_back(iterator->second->getID());				
+			Player *player = &Player::getPlayer();
+			player->reduceHealth(playerDamage);
 		}
 	}
 
@@ -106,3 +109,12 @@ void EnemyManager::setScene(Scene *scene){
 Scene *EnemyManager::getScene(){
 	return scene;
 }
+
+int EnemyManager::getPlayerDamage(){
+	return playerDamage;
+}
+
+void EnemyManager::setPlayerDamage(int newDamage){
+	playerDamage = newDamage;
+}
+

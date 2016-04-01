@@ -7,6 +7,7 @@
 #include "LightManager.h"
 #include "Scene.h"
 #include "EnemyManager.h"
+#include "Player.h"
 #include <GLFW/glfw3.h>
 
 using namespace std;
@@ -25,12 +26,14 @@ private:
 	LightManager *lightManager;
 	EnemyManager *enemyManager;
 	Scene *scene;
+	Player *player;
 
 	GameManager();
 	GameManager(const GameManager &);
 
 	~GameManager();
 
+	void checkPlayer();
 public:
 
 	void runGameLoop();
