@@ -34,18 +34,39 @@
     <Filter Include="Source Files\Enemy">
       <UniqueIdentifier>{8d5a62ca-243a-4a1f-9190-d748abfb739e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Camera">
+      <UniqueIdentifier>{06c4f09e-fed1-4303-a171-d3cbd9e3733f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Light">
+      <UniqueIdentifier>{73cc784c-4cef-404b-9c26-0e9ef7f55414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects\LoadedModels">
+      <UniqueIdentifier>{e159aed2-5f62-406b-be56-c30aa4ffea56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects\Sphere">
+      <UniqueIdentifier>{e926d2a5-d8d1-4ca1-ac8c-9bb6d91a56ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Sphere">
+      <UniqueIdentifier>{0a9fc2b3-c62a-4c97-a149-e5d585d71cba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\SimpleModels">
+      <UniqueIdentifier>{b82ac2e7-3383-41d9-a068-9ce77f1a758c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\LoadedModels">
+      <UniqueIdentifier>{3d536632-bcc9-415c-9412-82418c275695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Defense">
+      <UniqueIdentifier>{0567c0fd-ef39-42b4-a447-eacbbbde0d72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Defense">
+      <UniqueIdentifier>{8fc3b175-1698-442f-96bc-5d4491457ab7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TowerDefense.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
@@ -60,34 +81,7 @@
     <ClCompile Include="RenderManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleModel.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="LightManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PointLight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sphere.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="SceneObject.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelObject.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleObject.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="SphereObject.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
@@ -98,6 +92,45 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Source Files\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="LightManager.cpp">
+      <Filter>Source Files\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Objects\LoadedModels</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Objects\LoadedModels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelObject.cpp">
+      <Filter>Source Files\Objects\LoadedModels</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleModel.cpp">
+      <Filter>Source Files\Objects\SimpleModels</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleObject.cpp">
+      <Filter>Source Files\Objects\SimpleModels</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Source Files\Objects\Sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereObject.cpp">
+      <Filter>Source Files\Objects\Sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="DefenseManager.cpp">
+      <Filter>Source Files\Defense</Filter>
+    </ClCompile>
+    <ClCompile Include="Defender.cpp">
+      <Filter>Source Files\Defense</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,15 +151,6 @@
     </ClInclude>
     <ClInclude Include="RenderManager.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleModel.h">
-      <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="floorMap.h">
       <Filter>Header Files\Objects\SimpleModels</Filter>
@@ -149,18 +173,6 @@
     <ClInclude Include="SceneObject.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="ModelObject.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Sphere.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleObject.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="SphereObject.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
@@ -169,6 +181,33 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files\Objects\LoadedModels</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\Objects\LoadedModels</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelObject.h">
+      <Filter>Header Files\Objects\LoadedModels</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Header Files\Objects\Sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereObject.h">
+      <Filter>Header Files\Objects\Sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleModel.h">
+      <Filter>Header Files\Objects\SimpleModels</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleObject.h">
+      <Filter>Header Files\Objects\SimpleModels</Filter>
+    </ClInclude>
+    <ClInclude Include="Defender.h">
+      <Filter>Header Files\Defense</Filter>
+    </ClInclude>
+    <ClInclude Include="DefenseManager.h">
+      <Filter>Header Files\Defense</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

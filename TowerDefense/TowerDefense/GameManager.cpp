@@ -17,6 +17,9 @@ GameManager::GameManager():window(glfwGetCurrentContext())
 	player = &Player::getPlayer();
 	enemyManager = &EnemyManager::getEnemyManager();
 	enemyManager->setScene(scene);
+	defenseManager = &DefenseManager::getDefenseManager();
+	defenseManager->setScene(scene);
+	defenseManager->addDefender();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glfwSwapBuffers(window);
 	running = true;
@@ -110,6 +113,7 @@ void GameManager::runGameLoop()
 		glfwPollEvents();
 		inputManager->update();
 		enemyManager->update();
+		defenseManager->update();
 
 		renderManager->render(scene->getChildren(),screenWidth, screenHeight);
 		

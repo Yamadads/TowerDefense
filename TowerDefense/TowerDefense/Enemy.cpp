@@ -30,22 +30,22 @@ bool Enemy::hit(int force){
 }
 
 bool Enemy::move(float speed){
-	//object->setPosition(object->getVelocity());
-	//glm::vec3 oldPosition = object->getPosition();	
 	object->setVelocity(glm::vec3(object->getMovementDirection().x*speed, 
 								  object->getMovementDirection().y*speed,
 								  object->getMovementDirection().z*speed));
 
 	object->setPosition(object->getPosition() + object->getVelocity());		
 	
-	if ((glm::distance(target, object->getPosition()))<3){
+	if ((glm::distance(target, object->getPosition()))<5){
 		return true;
 	}
 	return false;
-	//glm::vec3 movementDirection = normalize(object->getPosition()-oldPosition);
-	//object->setMovementDirection(movementDirection);
 }
 
 std::string Enemy::getID(){
 	return id;
+}
+
+glm::vec3 Enemy::getPosition(){
+	return object->getPosition();
 }

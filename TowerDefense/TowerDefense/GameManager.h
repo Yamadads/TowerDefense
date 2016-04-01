@@ -7,6 +7,7 @@
 #include "LightManager.h"
 #include "Scene.h"
 #include "EnemyManager.h"
+#include "DefenseManager.h"
 #include "Player.h"
 #include <GLFW/glfw3.h>
 
@@ -25,6 +26,7 @@ private:
 	RenderManager *renderManager;
 	LightManager *lightManager;
 	EnemyManager *enemyManager;
+	DefenseManager *defenseManager;
 	Scene *scene;
 	Player *player;
 

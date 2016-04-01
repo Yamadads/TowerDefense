@@ -1,3 +1,4 @@
+#pragma once
 #include "ModelObject.h"
 #include <map>
 
@@ -14,6 +15,7 @@ public:
 	Enemy(std::string id, ModelObject *enemyObject, glm::vec3 target, std::map<std::string, SceneObject *> *sceneObjects);
 	~Enemy();
 
+	glm::vec3 getPosition();
 	bool move(float speed);
 	
 	std::string getID();

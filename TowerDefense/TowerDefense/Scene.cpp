@@ -27,12 +27,12 @@ Scene::Scene()
 
 	object = new ModelObject(models["megatron"], glm::vec3(0.0f, 0.0f, 0.0f), paths["VSlight"], paths["FSlight"]);
 	object->setRotation(glm::vec3(270.0f, 0.0f, 0.0f));
-	object->setScale(glm::vec3(0.005f, 0.005f, 0.005f));
+	object->setScale(glm::vec3(0.008f, 0.008f, 0.008f));
 	(*children)["megatron"] = object;	
 
-	object = new SphereObject(new Sphere(0.5,18,18), glm::vec3(3.0f, 2.0f, 2.0f), paths["VSsphere"], paths["FSsphere"], glm::vec4(1.0f, 1.0f, 0.3f, 0.9f));
+	/*object = new SphereObject(new Sphere(0.5,18,18), glm::vec3(3.0f, 2.0f, 2.0f), paths["VSsphere"], paths["FSsphere"], glm::vec4(1.0f, 1.0f, 0.3f, 0.9f));
 	(*children)["bullet"] = object;
-
+	*/
 	Camera *camera = new Camera(CameraPosition);
 	InputManager *inputManager = &InputManager::getInputManager();
 	inputManager->setCurrentCamera(camera);
@@ -45,6 +45,7 @@ Scene::Scene()
 void Scene::loadModels(){
 	models["megatron"] = new Model("Models/Megatron/RB-Megatron.obj");
 	models["raptor"] = new Model("Models/FA-22_Raptor/FA-22_Raptor.obj");
+	models["ratchet"] = new Model("Models/Ratchet/RB-Ratchet.obj");
 }
 
 void Scene::initShadersPaths(){	

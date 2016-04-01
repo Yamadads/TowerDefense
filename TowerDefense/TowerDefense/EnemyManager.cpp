@@ -37,10 +37,10 @@ EnemyManager::~EnemyManager(){
 }
 
 void EnemyManager::addEnemy(){
-	double radius = 10;
+	double radius = 55;
 	double angle = rand()*3.1415 * 2;
 	double x = cos(angle)*radius;
-	double y = 2;
+	double y = 4;
 	double z = sin(angle)*radius;
 	 
 	ModelObject *object = new ModelObject(scene->getModel("raptor"), glm::vec3(x, y, z), scene->getShaderPath("VSlight"), scene->getShaderPath("FSlight"));
@@ -71,11 +71,17 @@ void EnemyManager::update(){
 	for (map<string, Enemy *>::iterator iterator = enemies->begin(); iterator != enemies->end(); iterator++)
 	{
 		//move enemy and react if hit megatron
-		if (iterator->second->move(0.005f)){
+		if (iterator->second->move(0.01f)){
 			//add to kill list 
 			toKill->push_back(iterator->second->getID());				
 			Player *player = &Player::getPlayer();
 			player->reduceHealth(playerDamage);
+		}
+		if (iterator->second->getLifePoints() == 0){
+			vector<string>::iterator it = std::find(toKill->begin(), toKill->end(), iterator->second->getID());
+			if (it == toKill->end()){				
+				toKill->push_back(iterator->second->getID());
+			}
 		}
 	}
 
