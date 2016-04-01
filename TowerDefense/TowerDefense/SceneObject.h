@@ -26,9 +26,9 @@ protected:
 
 	virtual void configShader(glm::mat4& model, glm::mat4& view, glm::mat4& projection) = 0;
 
-public:
+public:	
 	virtual void draw(glm::mat4& model, glm::mat4& view, glm::mat4& projection) = 0;
-	
+
 	Shader *getShader();
 	void setShader(Shader *newShader);
 

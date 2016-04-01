@@ -76,6 +76,11 @@ GameManager & GameManager::getGameManager()
 
 GameManager::~GameManager()
 {
+	CameraManager::destroyCameraManager();
+	InputManager::destroyInputManager();
+	RenderManager::destroyRenderManager();	
+	EnemyManager::destroyEnemyManager();
+	delete scene;
 }
 
 void GameManager::destroyGameManager()

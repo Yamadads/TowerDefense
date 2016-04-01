@@ -23,23 +23,25 @@ std::map<std::string, Enemy*>* EnemyManager::getEnemies(){
 }
 
 EnemyManager::EnemyManager(){
-	enemies = new std::map<std::string, Enemy*>();
-	this->scene = scene;
-	model = new Model("Models/FA-22_Raptor/FA-22_Raptor.obj");
+	enemies = new std::map<std::string, Enemy*>();		
 }
 
 EnemyManager::~EnemyManager(){
-
+	for (map<string, Enemy *>::iterator iterator = enemies->begin(); iterator != enemies->end(); iterator++)
+	{
+		delete (*iterator).second;
+	}
+	delete enemies;
 }
 
 void EnemyManager::addEnemy(){
-	double radius = 55;
+	double radius = 10;
 	double angle = rand()*3.1415 * 2;
 	double x = cos(angle)*radius;
 	double y = 2;
 	double z = sin(angle)*radius;
 	 
-	ModelObject *object = new ModelObject(model, glm::vec3(x, y, z), scene->getShaderPath("VSlight"), scene->getShaderPath("FSlight"));
+	ModelObject *object = new ModelObject(scene->getModel("raptor"), glm::vec3(x, y, z), scene->getShaderPath("VSlight"), scene->getShaderPath("FSlight"));
 
 	object->setScale(glm::vec3(0.2f, 0.2f, 0.2f));	
 
@@ -61,7 +63,28 @@ std::string EnemyManager::getNewId(){
 	return newID;
 }
 
-void EnemyManager::update(){		
+void EnemyManager::update(){	
+	vector<string> *toKill = new vector<string>();
+	//move enemies
+	for (map<string, Enemy *>::iterator iterator = enemies->begin(); iterator != enemies->end(); iterator++)
+	{
+		//move enemy and react if hit megatron
+		if (iterator->second->move(0.005)){
+			//add to kill list 
+			toKill->push_back(iterator->second->getID());			
+			//kill player
+		}
+	}
+
+	//kill 
+	for each (std::string kill in (*toKill))
+	{
+		(*enemies)[kill]->~Enemy();
+		(*enemies).erase(kill);
+	}
+	delete toKill;
+
+	//add new enemy
 	double time = glfwGetTime();
 	if ((time - lastNewEnemyTime) > delay){
 		addEnemy();

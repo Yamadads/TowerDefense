@@ -81,6 +81,6 @@ ModelObject::ModelObject(Model *model, glm::vec3 position, const GLchar* vertexP
 }
 
 ModelObject::~ModelObject(){
-	delete model;
+	//delete model;
 	delete getShader();
 }

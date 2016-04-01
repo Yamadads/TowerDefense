@@ -14,8 +14,7 @@ private:
 	unsigned long long id = 0;
 	double lastNewEnemyTime = 0;
 	double delay = 10;
-	std::string getNewId();
-	Model *model;
+	std::string getNewId();	
 public:
 	double getDelay();
 	void setDelay(double delayTime);

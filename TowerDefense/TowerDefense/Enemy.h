@@ -1,4 +1,4 @@
-#include "SceneObject.h"
+#include "ModelObject.h"
 #include <map>
 
 class Enemy{
@@ -7,13 +7,17 @@ private:
 	std::string id;
 	glm::vec3 target;
 
-	SceneObject *object;
+	ModelObject *object;
 	std::map<std::string, SceneObject *> *objects;
 
 public:
-	Enemy(std::string id, SceneObject *enemyObject, glm::vec3 target, std::map<std::string, SceneObject *> *sceneObjects);
+	Enemy(std::string id, ModelObject *enemyObject, glm::vec3 target, std::map<std::string, SceneObject *> *sceneObjects);
 	~Enemy();
 
+	bool move(float speed);
+	
+	std::string getID();
+	
 	int getLifePoints();	
-	void hit(int force);
+	bool hit(int force);
 };

@@ -15,58 +15,23 @@
 using namespace glm;
 
 Scene::Scene()
-{
-	children = new map<string, SceneObject *>();	
-	paths["VSmodel"] = "Shaders/model.vs";
-	paths["FSmodel"] = "Shaders/model.frag";
-	paths["VSsimple"] = "Shaders/simpleModel.vs";
-	paths["FSsimple"] = "Shaders/simpleModel.frag";
-	paths["VScolor"] = "Shaders/ColorShader.vs";
-	paths["FScolor"] = "Shaders/ColorShader.frag";
-	paths["VSlight"] = "Shaders/LightShader.vs";
-	paths["FSlight"] = "Shaders/LightShader.frag";
-	paths["VSsphere"] = "Shaders/Sphere.vs";
-	paths["FSsphere"] = "Shaders/Sphere.frag";
-
+{	
+	children = new map<string, SceneObject *>();
+	loadModels();
+	initShadersPaths();
+		
 	SceneObject *object = NULL;	
 	SimpleModel *simpleModel = NULL;
 
 	initMap(object, paths["VSlight"], paths["FSlight"], paths["VSsimple"], paths["FSsimple"]);
 
-	object = new ModelObject(new Model("Models/Megatron/RB-Megatron.obj"), glm::vec3(0.0f, 0.0f, 0.0f), paths["VSlight"], paths["FSlight"]);
+	object = new ModelObject(models["megatron"], glm::vec3(0.0f, 0.0f, 0.0f), paths["VSlight"], paths["FSlight"]);
 	object->setRotation(glm::vec3(270.0f, 0.0f, 0.0f));
 	object->setScale(glm::vec3(0.005f, 0.005f, 0.005f));
 	(*children)["megatron"] = object;	
 
 	object = new SphereObject(new Sphere(0.5,18,18), glm::vec3(3.0f, 2.0f, 2.0f), paths["VSsphere"], paths["FSsphere"], glm::vec4(1.0f, 1.0f, 0.3f, 0.9f));
 	(*children)["bullet"] = object;
-
-	/*
-	model = new Model("Models/Megatron/RB-Megatron.obj");
-	object = new Object(model, glm::vec3(0.0f, 0.0f, 0.0f), paths["VSlight"], paths["FSlight"]);
-	object->setRotation(glm::vec3(270.0f, 0.0f, 0.0f));
-	object->setScale(glm::vec3(0.005f, 0.005f, 0.005f));
-	children->push_back(object);
-
-	model = new Model("Models/boxes/untitled.obj");
-	object = new Object(model, glm::vec3(1.0f, 0.0f, -1.0f), paths["VSmodel"], paths["FSmodel"]);
-	object->setRotation(glm::vec3(0.0f, 0.0f, 0.0f));
-	object->setScale(glm::vec3(0.01f, 0.01f, 0.01f));
-	children->push_back(object);
-
-	model = new Model("Models/lamp/little_brown_lamp.obj");
-	object = new Object(model, glm::vec3(0.0f, 3.0f, -5.0f), paths["VSlight"], paths["FSlight"]);
-	object->setRotation(glm::vec3(0.0f, 0.0f, 0.0f));
-	object->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
-	children->push_back(object);
-	/*
-	model = new Model("Models/tower/tower.obj");
-	object = new Object(model, glm::vec3(-5.0f, 0.0f, -5.0f), paths["VSmodel"], paths["FSmodel"]);
-	object->setRotation(glm::vec3(-90.0f, 0.0f, 90.0f));
-	object->setScale(glm::vec3(1.0f, 1.0f, 1.0f));
-	children->push_back(object);*/
-
-
 
 	Camera *camera = new Camera(CameraPosition);
 	InputManager *inputManager = &InputManager::getInputManager();
@@ -75,6 +40,22 @@ Scene::Scene()
 	CameraManager *cameraManager = &CameraManager::getCameraManager();
 	cameraManager->setCurrentCamera(camera);
 
+}
+
+void Scene::loadModels(){
+	models["megatron"] = new Model("Models/Megatron/RB-Megatron.obj");
+	models["raptor"] = new Model("Models/FA-22_Raptor/FA-22_Raptor.obj");
+}
+
+void Scene::initShadersPaths(){	
+	paths["VSmodel"] = "Shaders/model.vs";
+	paths["FSmodel"] = "Shaders/model.frag";
+	paths["VSsimple"] = "Shaders/simpleModel.vs";
+	paths["FSsimple"] = "Shaders/simpleModel.frag";
+	paths["VSlight"] = "Shaders/LightShader.vs";
+	paths["FSlight"] = "Shaders/LightShader.frag";
+	paths["VSsphere"] = "Shaders/Sphere.vs";
+	paths["FSsphere"] = "Shaders/Sphere.frag";
 }
 
 void Scene::initMap(SceneObject *object, const GLchar* floorVSPath, const GLchar* floorFSPath, const GLchar* wallVSPath, const GLchar* wallFSPath){
@@ -118,8 +99,16 @@ Scene::~Scene()
 		delete (*iterator).second;
 	}
 	delete children;
+
+	for (map<string, Model *>::iterator iterator = models.begin(); iterator != models.end(); iterator++)
+	{
+		delete (*iterator).second;
+	}
 }
 
+Model *Scene::getModel(std::string name){
+	return models[name];
+}
 
 map<string, SceneObject *>* Scene::getChildren()
 {
