@@ -75,7 +75,24 @@ void Camera::ProcessKeyboard(Camera_Movement direction, GLfloat deltaTime)
 	if (direction == RIGHT)
 		this->Position += this->Right * velocity;
 
-	//this->Position.y = 0.0f; TODO 
+	if (this->Position.y<3){
+		this->Position.y = 3.0f;
+	}
+	if (this->Position.y>20){
+		this->Position.y = 20.0f;
+	}
+	if (this->Position.z>39.0){
+		this->Position.z = 39.0f;
+	}
+	if (this->Position.z<-39.0){
+		this->Position.z = -39.0f;
+	}
+	if (this->Position.x>39.0){
+		this->Position.x = 39.0f;
+	}
+	if (this->Position.x<-39.0){
+		this->Position.x = -39.0f;
+	}
 }
 
 void Camera::ProcessMouseMovement(GLfloat xoffset, GLfloat yoffset, GLboolean constrainPitch)

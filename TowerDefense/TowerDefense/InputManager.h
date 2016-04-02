@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Camera.h"
+#include "DefenseManager.h"
 #include <GLFW/glfw3.h>
 
 
@@ -13,18 +14,19 @@ private:
 	GLfloat deltaTime;
 	GLfloat lastFrame;
 	bool firstMouse;
-	GLfloat lastShootTime;
 	glm::vec3 eyeVector;
 	Camera *currentCamera;
-	GLFWwindow *window;
+	DefenseManager *defenseManager;
 
-	void generateShoot();
+	Defender *defender;
+
+	GLFWwindow *window;
 
 	void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
 	void mouseCallback(GLFWwindow* window, double xpos, double ypos);
 	void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
-	void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
-	
+	void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);	
+
 	InputManager();
 	~InputManager();
 

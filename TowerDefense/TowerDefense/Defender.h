@@ -7,6 +7,7 @@ class Defender{
 private:
 	std::string objectID;
 	std::string bulletID;
+	bool ready;
 
 	ModelObject *object;
 	SphereObject *bullet;
@@ -19,6 +20,8 @@ private:
 public:
 	Defender(std::string id, ModelObject *defenderObject, std::map<std::string, SceneObject *> *sceneObjects, std::map<std::string, Enemy *> *enemies, SphereObject *sphereObject);
 	~Defender();
+
+	void activate();
 
 	bool move(float speed);
 	ModelObject *getObject();

@@ -10,6 +10,7 @@ Defender::Defender(std::string id, ModelObject *defenderObject, std::map<std::st
 	bulletID = id + "b";
 	(*objects)[objectID] = object;
 	(*objects)[bulletID] = bullet;
+	ready = false;
 }
 
 Defender::~Defender(){
@@ -36,6 +37,9 @@ SphereObject *Defender::getBullet(){
 }
 
 void Defender::shot(int hitScore, double deltaTime){
+	if (!ready){
+		return;
+	}
 	float speed = 0.1;
 	if (tempEnemy != NULL){
 		bullet->setMovementDirection(tempEnemy->getPosition()-bullet->getPosition());
@@ -60,4 +64,9 @@ void Defender::shot(int hitScore, double deltaTime){
 			}
 		}
 	}
+}
+
+void Defender::activate(){
+	cout << "activate" << endl;
+	ready = true;
 }

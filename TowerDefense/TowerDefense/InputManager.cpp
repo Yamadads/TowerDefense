@@ -6,8 +6,9 @@ using namespace std;
 
 InputManager::InputManager()
 :window(glfwGetCurrentContext()), mouseLastX(DefaultWidth / 2.0), mouseLastY(DefaultHeight / 2.0), firstMouse(true),
-deltaTime(0.0f), lastFrame(0.0f), lastShootTime((GLfloat)glfwGetTime())
+deltaTime(0.0f), lastFrame(0.0f)
 {
+	defenseManager = &DefenseManager::getDefenseManager();
 }
 
 InputManager::~InputManager()
@@ -45,6 +46,20 @@ void InputManager::keyCallback(GLFWwindow* window, int key, int scancode, int ac
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
+
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS){
+		if (defender == NULL){
+			defender = defenseManager->addDefender();
+			defender->activate();
+			defender = NULL;
+		}
+		else{			
+			defender->activate();
+			cout << "IPactivate" << endl;
+			defender = NULL;
+		}
+	}
+		
 }
 
 

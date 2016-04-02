@@ -53,11 +53,16 @@ void LightManager::setDirLight(glm::vec3 direction, glm::vec3 ambient, glm::vec3
 }
 
 unsigned long long LightManager::getNewID(){	
-	return id++;	
+	id++;
+	return (id-1);	
 }
 
 unsigned long long LightManager::addLightPoint(glm::vec3 position){
 	unsigned long long newLigntID = getNewID();
 	(*lightPoints)[newLigntID] = new PointLight(position);
+	/*for (std::map<unsigned long long, PointLight*>::iterator iterator = lightPoints->begin(); iterator != lightPoints->end(); iterator++)
+	{
+		std::cout << iterator->second->getPosition().x << " " << iterator->second->getPosition().y << " " << iterator->second->getPosition().z<<std::endl;
+	}*///TODO tests
 	return newLigntID;
 }

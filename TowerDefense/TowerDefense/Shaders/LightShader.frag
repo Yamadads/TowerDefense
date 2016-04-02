@@ -71,12 +71,12 @@ void main()
 		vec3 reflectDir = reflect(-lightDir, norm);
 		float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
 		// Attenuation
-		float distance = length(pointLights[0].position - FragPos);
+		float distance = length(pointLights[i].position - FragPos);
 		float attenuation = 1.0f / (pointLights[i].constant + pointLights[i].linear * distance + pointLights[i].quadratic * (distance * distance));    
 		// Combine results
-		vec3 ambient = pointLights[0].ambient * vec3(texture(material.texture_diffuse1, TexCoords));
-		vec3 diffuse = pointLights[0].diffuse * diff * vec3(texture(material.texture_diffuse1, TexCoords));
-		vec3 specular = pointLights[0].specular * spec * vec3(texture(material.texture_specular1, TexCoords));
+		vec3 ambient = pointLights[i].ambient * vec3(texture(material.texture_diffuse1, TexCoords));
+		vec3 diffuse = pointLights[i].diffuse * diff * vec3(texture(material.texture_diffuse1, TexCoords));
+		vec3 specular = pointLights[i].specular * spec * vec3(texture(material.texture_specular1, TexCoords));
 		ambient *= attenuation;
 		diffuse *= attenuation;
 		specular *= attenuation;

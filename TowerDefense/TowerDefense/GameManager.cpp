@@ -18,8 +18,7 @@ GameManager::GameManager():window(glfwGetCurrentContext())
 	enemyManager = &EnemyManager::getEnemyManager();
 	enemyManager->setScene(scene);
 	defenseManager = &DefenseManager::getDefenseManager();
-	defenseManager->setScene(scene);
-	defenseManager->addDefender();
+	defenseManager->setScene(scene);	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glfwSwapBuffers(window);
 	running = true;

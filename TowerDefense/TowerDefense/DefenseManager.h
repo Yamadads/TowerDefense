@@ -27,7 +27,7 @@ public:
 
 	std::map<std::string, Defender*> *getDefenders();
 
-	void addDefender();
+	Defender* addDefender();
 	void update(double deltaTime);
 
 	static DefenseManager& getDefenseManager();

@@ -38,7 +38,7 @@ DefenseManager::~DefenseManager(){
 	delete defenders;
 }
 
-void DefenseManager::addDefender(){	
+Defender* DefenseManager::addDefender(){
 	float x = cameraManager->getCurrentCamera()->getPosition().x;
 	float y = 0;
 	float z = cameraManager->getCurrentCamera()->getPosition().z;
@@ -51,6 +51,7 @@ void DefenseManager::addDefender(){
 	SphereObject *sphereObj = new SphereObject(new Sphere(0.1, 18, 18), glm::vec3(x, y+3, z), scene->getShaderPath("VSsphere"), scene->getShaderPath("FSsphere"), glm::vec4(1.0f,1.0f,0.4f,1.0f));
 	Defender *defender = new Defender(newDefenderID, object, scene->getChildren(), enemyManager->getEnemies(), sphereObj);
 	(*defenders)[newDefenderID] = defender;
+	return defender;
 }
 
 std::string DefenseManager::getNewId(){
