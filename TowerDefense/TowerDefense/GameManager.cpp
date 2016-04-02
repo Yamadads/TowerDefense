@@ -107,13 +107,13 @@ void GameManager::runGameLoop()
 	while (running)
 	{				
 		GLfloat currentTime = (GLfloat)glfwGetTime();
-		deltaTime += (currentTime - lastTime) * GameSpeed;
+		deltaTime = (currentTime - lastTime) * GameSpeed;
 		lastTime = currentTime;
 
 		glfwPollEvents();
 		inputManager->update();
-		enemyManager->update();
-		defenseManager->update();
+		enemyManager->update(deltaTime);
+		defenseManager->update(deltaTime);
 
 		renderManager->render(scene->getChildren(),screenWidth, screenHeight);
 		

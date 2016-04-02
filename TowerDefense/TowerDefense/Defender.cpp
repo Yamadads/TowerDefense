@@ -35,13 +35,13 @@ SphereObject *Defender::getBullet(){
 	return bullet;
 }
 
-void Defender::shot(int hitScore){
-	float speed = 0.03;
+void Defender::shot(int hitScore, double deltaTime){
+	float speed = 0.1;
 	if (tempEnemy != NULL){
 		bullet->setMovementDirection(tempEnemy->getPosition()-bullet->getPosition());
-		bullet->setVelocity(glm::vec3(bullet->getMovementDirection().x*speed,
-										bullet->getMovementDirection().y*speed,
-										bullet->getMovementDirection().z*speed));
+		bullet->setVelocity(glm::vec3(bullet->getMovementDirection().x*speed*deltaTime,
+			  						bullet->getMovementDirection().y*speed*deltaTime,
+									bullet->getMovementDirection().z*speed*deltaTime));
 		bullet->setPosition(bullet->getPosition() + bullet->getVelocity());		
 		if ((glm::distance(tempEnemy->getPosition(), bullet->getPosition()))<1){			
 			tempEnemy->hit(hitScore);

@@ -65,13 +65,13 @@ std::string EnemyManager::getNewId(){
 	return newID;
 }
 
-void EnemyManager::update(){	
+void EnemyManager::update(double deltaTime){	
 	vector<string> *toKill = new vector<string>();
 	//move enemies
 	for (map<string, Enemy *>::iterator iterator = enemies->begin(); iterator != enemies->end(); iterator++)
 	{
 		//move enemy and react if hit megatron
-		if (iterator->second->move(0.01f)){
+		if (iterator->second->move(deltaTime)){
 			//add to kill list 
 			toKill->push_back(iterator->second->getID());				
 			Player *player = &Player::getPlayer();

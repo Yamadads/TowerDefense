@@ -30,7 +30,7 @@ public:
 	std::map<std::string, Enemy*> *getEnemies();
 	
 	void addEnemy();
-	void update();
+	void update(double deltaTime);
 	
 	static EnemyManager& getEnemyManager();
 	static void destroyEnemyManager();

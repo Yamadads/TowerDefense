@@ -8,7 +8,7 @@ Enemy::Enemy(std::string id, ModelObject *enemyObject, glm::vec3 target, std::ma
 	(*objects)[id] = object;
 	this->id = id;
 	glm::vec3 direction = glm::normalize(target - object->getPosition());
-	object->setMovementDirection(glm::vec3(direction.x, 0, direction.z));	
+	object->setMovementDirection(glm::vec3(direction.x, 0, direction.z));
 }
 
 Enemy::~Enemy(){
@@ -29,14 +29,15 @@ bool Enemy::hit(int force){
 	return false;
 }
 
-bool Enemy::move(float speed){
-	object->setVelocity(glm::vec3(object->getMovementDirection().x*speed, 
-								  object->getMovementDirection().y*speed,
-								  object->getMovementDirection().z*speed));
+bool Enemy::move(double deltaTime){
+	float speed = 0.05;
+	object->setVelocity(glm::vec3(object->getMovementDirection().x*deltaTime*speed,
+								  object->getMovementDirection().y*deltaTime*speed,
+								  object->getMovementDirection().z*deltaTime*speed));
 
-	object->setPosition(object->getPosition() + object->getVelocity());		
-	
-	if ((glm::distance(target, object->getPosition()))<5){
+	object->setPosition(object->getPosition() + object->getVelocity());
+
+	if ((glm::distance(target, object->getPosition())) < 5){
 		return true;
 	}
 	return false;

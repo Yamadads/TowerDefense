@@ -24,7 +24,7 @@ public:
 	ModelObject *getObject();
 	SphereObject *getBullet();
 
-	void shot(int hitScore);
+	void shot(int hitScore, double deltaTime);
 
 	std::string getID();
 };

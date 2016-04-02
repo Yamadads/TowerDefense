@@ -60,11 +60,11 @@ std::string DefenseManager::getNewId(){
 	return newID;
 }
 
-void DefenseManager::update(){
+void DefenseManager::update(double deltaTime){
 	
 	for (map<string, Defender *>::iterator iterator = defenders->begin(); iterator != defenders->end(); iterator++)
 	{
-		iterator->second->shot(10);
+		iterator->second->shot(10, deltaTime);
 		
 	}
 	/*
