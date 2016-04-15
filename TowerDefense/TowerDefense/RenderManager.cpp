@@ -36,6 +36,9 @@ void RenderManager::renderText(GLuint width, GLuint height){
 
 	textRender->renderText("Health: ", 25.0f, height-50.0f, 1.0f, glm::vec3(1.0, 0.0f, 0.0f));
 	textRender->renderText(to_string(player->getHealth()), 195.0f, height - 50.0f, 1.0f, glm::vec3(1.0, 0.0f, 0.0f));
+
+	textRender->renderText("Points: ", width - 270.0f, height - 50.0f, 1.0f, glm::vec3(1.0, 0.0f, 0.0f));
+	textRender->renderText(to_string(player->getPoints()), width - 100.0f, height - 50.0f, 1.0f, glm::vec3(1.0, 0.0f, 0.0f));
 }
 
 glm::mat4 RenderManager::transformModel(glm::mat4 modelMatrix, SceneObject *object){

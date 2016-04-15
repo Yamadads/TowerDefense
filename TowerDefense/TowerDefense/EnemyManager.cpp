@@ -65,13 +65,15 @@ std::string EnemyManager::getNewId(){
 	return newID;
 }
 
-void EnemyManager::update(double deltaTime){	
+void EnemyManager::update(double deltaTime){
+	Player *player = &Player::getPlayer();
+	float speed = 0.05+player->getPoints()/500;
 	vector<string> *toKill = new vector<string>();
 	//move enemies
 	for (map<string, Enemy *>::iterator iterator = enemies->begin(); iterator != enemies->end(); iterator++)
 	{
 		//move enemy and react if hit megatron
-		if (iterator->second->move(deltaTime)){
+		if (iterator->second->move(deltaTime, speed)){
 			//add to kill list 
 			toKill->push_back(iterator->second->getID());				
 			Player *player = &Player::getPlayer();
@@ -87,7 +89,9 @@ void EnemyManager::update(double deltaTime){
 
 	//kill 
 	for each (std::string kill in (*toKill))
-	{
+	{		
+		player->addPoints(1);
+
 		(*enemies)[kill]->~Enemy();
 		(*enemies).erase(kill);
 	}
@@ -96,6 +100,7 @@ void EnemyManager::update(double deltaTime){
 	//add new enemy
 	double time = glfwGetTime();
 	if ((time - lastNewEnemyTime) > delay){
+		if (delay>3) delay -= 0.05;
 		addEnemy();
 		lastNewEnemyTime = glfwGetTime();		
 	}

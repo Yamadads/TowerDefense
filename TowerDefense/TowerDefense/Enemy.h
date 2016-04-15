@@ -16,7 +16,7 @@ public:
 	~Enemy();
 
 	glm::vec3 getPosition();
-	bool move(double deltaTime);
+	bool move(double deltaTime, float speed);
 	
 	std::string getID();
 	

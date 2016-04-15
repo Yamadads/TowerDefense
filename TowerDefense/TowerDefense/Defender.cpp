@@ -66,7 +66,6 @@ void Defender::shot(int hitScore, double deltaTime){
 	}
 }
 
-void Defender::activate(){
-	cout << "activate" << endl;
+void Defender::activate(){	
 	ready = true;
 }

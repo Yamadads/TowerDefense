@@ -50,9 +50,12 @@ void InputManager::keyCallback(GLFWwindow* window, int key, int scancode, int ac
 
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS){
 		if (!isNewDefender){
-			defender = defenseManager->addDefender();		
-			defender->activate();
-			defender = NULL;
+			Player *player = &Player::getPlayer();
+			if ((defenseManager->getDefenders()->size() == 0) || ((player->getPoints() / defenseManager->getDefenders()->size()) > 5)){
+				defender = defenseManager->addDefender();
+				defender->activate();
+				defender = NULL;
+			}			
 		}
 	}
 		

@@ -38,7 +38,7 @@ DefenseManager::~DefenseManager(){
 	delete defenders;
 }
 
-Defender* DefenseManager::addDefender(){
+Defender* DefenseManager::addDefender(){	
 	float x = cameraManager->getCurrentCamera()->getPosition().x;
 	float y = 0;
 	float z = cameraManager->getCurrentCamera()->getPosition().z;

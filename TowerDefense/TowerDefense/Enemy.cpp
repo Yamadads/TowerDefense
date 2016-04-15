@@ -29,8 +29,7 @@ bool Enemy::hit(int force){
 	return false;
 }
 
-bool Enemy::move(double deltaTime){
-	float speed = 0.05;
+bool Enemy::move(double deltaTime, float speed){	
 	object->setVelocity(glm::vec3(object->getMovementDirection().x*deltaTime*speed,
 								  object->getMovementDirection().y*deltaTime*speed,
 								  object->getMovementDirection().z*deltaTime*speed));
