@@ -61,7 +61,8 @@ void main()
 	vec3 result = (ambient + diffuse + specular);
 
        // Phase 2: Point lights
-
+	   vec3 max=result;
+	   vec3 dirTemp = result;
     for(int i = 0; i < pointsNumber ; i++)
 	{
 		vec3 lightDir = normalize(pointLights[i].position - FragPos);
@@ -82,6 +83,5 @@ void main()
 		specular *= attenuation;
 		result += (ambient + diffuse + specular);
 	}
-    
-    color = vec4(result, 1.0);	
+	color = vec4(result, 1.0);	
 }

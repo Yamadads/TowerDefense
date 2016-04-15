@@ -16,8 +16,7 @@ using namespace std;
 class GameManager{
 private:
 	static bool running;
-	static GLuint screenWidth;
-	static GLuint screenHeight;
+
 	GLFWwindow *window;
 	GLfloat deltaTime;
 
@@ -37,6 +36,8 @@ private:
 
 	void checkPlayer();
 public:
+	static GLuint screenWidth;
+	static GLuint screenHeight;
 
 	void runGameLoop();
 	static GameManager & getGameManager();

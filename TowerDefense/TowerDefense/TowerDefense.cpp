@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv)
 {
-	srand(time(NULL));
+	srand(unsigned int(time(NULL)));
 	GameManager *gameManager = &GameManager::getGameManager();
 	gameManager->runGameLoop();
 	GameManager::destroyGameManager();

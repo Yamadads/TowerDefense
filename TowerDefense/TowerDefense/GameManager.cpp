@@ -41,6 +41,8 @@ GameManager & GameManager::getGameManager()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
+	
+
 	const GLFWvidmode *videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 	GLuint monitorWidth = videoMode->width;
 	GLuint monitorHeight = videoMode->height;
@@ -72,6 +74,10 @@ GameManager & GameManager::getGameManager()
 
 	glewExperimental = GL_TRUE;
 	glewInit();
+
+	//text rendering
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	gameManager = new GameManager();
 	return *gameManager;

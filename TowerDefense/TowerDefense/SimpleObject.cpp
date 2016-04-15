@@ -30,12 +30,13 @@ void SimpleObject::configShader(glm::mat4& model, glm::mat4& view, glm::mat4& pr
 	glUniform1i(glGetUniformLocation(getShader()->Program, "pointsNumber"), (GLint)lightManager->getLightPoints()->size());
 
 	int pointNum = 0;
+	float s = 0.6;
 	for (std::map<unsigned long long, PointLight*>::iterator iterator = lightManager->getLightPoints()->begin(); iterator != lightManager->getLightPoints()->end(); iterator++)
 	{		
 		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "position").c_str()), (*iterator).second->getPosition().x, (*iterator).second->getPosition().y, (*iterator).second->getPosition().z);
-		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "ambient").c_str()), (*iterator).second->getAmbient().x, (*iterator).second->getAmbient().y, (*iterator).second->getAmbient().z);
-		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "diffuse").c_str()), (*iterator).second->getDiffuse().x, (*iterator).second->getDiffuse().y, (*iterator).second->getDiffuse().z);
-		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "specular").c_str()), (*iterator).second->getSpecular().x, (*iterator).second->getSpecular().y, (*iterator).second->getSpecular().z);
+		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "ambient").c_str()), (*iterator).second->getAmbient().x*s, (*iterator).second->getAmbient().y*s, (*iterator).second->getAmbient().z*s);
+		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "diffuse").c_str()), (*iterator).second->getDiffuse().x*s, (*iterator).second->getDiffuse().y*s, (*iterator).second->getDiffuse().z*s);
+		glUniform3f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "specular").c_str()), (*iterator).second->getSpecular().x*s, (*iterator).second->getSpecular().y*s, (*iterator).second->getSpecular().z*s);
 		glUniform1f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "constant").c_str()), (*iterator).second->getConstant());
 		glUniform1f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "linear").c_str()), (*iterator).second->getLinear());
 		glUniform1f(glGetUniformLocation(getShader()->Program, getUniformName(pointNum, "quadratic").c_str()), (*iterator).second->getQuadratic());

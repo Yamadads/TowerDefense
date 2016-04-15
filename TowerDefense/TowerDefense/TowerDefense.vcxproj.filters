@@ -132,6 +132,9 @@
     <ClCompile Include="Defender.cpp">
       <Filter>Source Files\Defense</Filter>
     </ClCompile>
+    <ClCompile Include="TextRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="DefenseManager.h">
       <Filter>Header Files\Defense</Filter>
+    </ClInclude>
+    <ClInclude Include="TextRender.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

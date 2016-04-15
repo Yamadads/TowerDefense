@@ -17,6 +17,7 @@ void RenderManager::render(map<string, SceneObject*> *objectsArray,GLuint width,
 	glClearColor(0.149f, 0.388f, 0.925f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 
+
 	for (map<string, SceneObject *>::iterator iterator = objectsArray->begin(); iterator != objectsArray->end(); iterator++)
 	{		
 		glEnable(GL_DEPTH_TEST);
@@ -25,7 +26,16 @@ void RenderManager::render(map<string, SceneObject*> *objectsArray,GLuint width,
 		sceneObject->draw(model, view, projection);
 		model = glm::mat4();
 	}		
+	renderText(width, height);
+
 	glfwSwapBuffers(window);
+}
+
+void RenderManager::renderText(GLuint width, GLuint height){	
+	Player *player = &Player::getPlayer();
+
+	textRender->renderText("Health: ", 25.0f, height-50.0f, 1.0f, glm::vec3(1.0, 0.0f, 0.0f));
+	textRender->renderText(to_string(player->getHealth()), 195.0f, height - 50.0f, 1.0f, glm::vec3(1.0, 0.0f, 0.0f));
 }
 
 glm::mat4 RenderManager::transformModel(glm::mat4 modelMatrix, SceneObject *object){
@@ -43,12 +53,13 @@ glm::mat4 RenderManager::rotateModel(glm::mat4 modelMatrix, glm::vec3 rotationMa
 }
 
 RenderManager::RenderManager() :window(glfwGetCurrentContext()), cameraManager(&CameraManager::getCameraManager()), firstRender(true)
-{
+{	
+	textRender = &TextRender::getTextRender();	
 }
 
 RenderManager::~RenderManager()
 {
-
+	textRender->destroyTextRender();	
 }
 
 RenderManager& RenderManager::getRenderManager()

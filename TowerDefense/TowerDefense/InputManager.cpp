@@ -9,6 +9,7 @@ InputManager::InputManager()
 deltaTime(0.0f), lastFrame(0.0f)
 {
 	defenseManager = &DefenseManager::getDefenseManager();
+	isNewDefender = false;
 }
 
 InputManager::~InputManager()
@@ -48,14 +49,9 @@ void InputManager::keyCallback(GLFWwindow* window, int key, int scancode, int ac
 		glfwSetWindowShouldClose(window, GL_TRUE);
 
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS){
-		if (defender == NULL){
-			defender = defenseManager->addDefender();
+		if (!isNewDefender){
+			defender = defenseManager->addDefender();		
 			defender->activate();
-			defender = NULL;
-		}
-		else{			
-			defender->activate();
-			cout << "IPactivate" << endl;
 			defender = NULL;
 		}
 	}

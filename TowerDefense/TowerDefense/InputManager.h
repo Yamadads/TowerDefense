@@ -19,6 +19,7 @@ private:
 	DefenseManager *defenseManager;
 
 	Defender *defender;
+	bool isNewDefender;
 
 	GLFWwindow *window;
 
